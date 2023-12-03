@@ -1,0 +1,37 @@
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+ name: apache-d
+ labels:
+  app: apache2
+spec:
+ replicas: 5
+ selector:
+  matchLabels:
+   app: prt
+ template:
+  metadata:
+   labels:
+    app: prt
+  spec:
+   containers:
+   - name: apache2
+     image: pav537/prt
+     ports:
+     - containerPort: 80
+---
+
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-apache
+spec:
+  type: NodePort
+  ports:
+    - targetPort: 80
+      port: 80
+      nodePort: 30010
+  selector:
+     app: prt
