@@ -15,7 +15,7 @@ pipeline{
               {
       	     	print("building docker image") 
              	sh "sudo chmod 777 /var/run/docker.sock"
-             	sh "docker build -t pav537/prt-test:latest ."
+             	sh "docker build -t pav537/prt-test ."
 		}
 	  }
 	 stage('Login to Docker Hub') 
